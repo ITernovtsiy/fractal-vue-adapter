@@ -1,18 +1,18 @@
 {
-  "name": "@swey/fractal-vue-adapter",
+  "name": "@iternovtsiy/fractal-vue-adapter",
   "version": "0.4.1",
-  "description": "Vue template adapter for Fractal.",
+  "description": "Forked Vue template adapter for Fractal.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swey/fractal-vue-adapter.git"
+    "url": "https://github.com/ITernovtsiy/fractal-vue-adapter.git"
   },
-  "author": "Sebastian Weyrauch",
+  "author": "Sebastian Weyrauch, Ivan Ternovtsiy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/swey/fractal-vue-adapter/issues"
+    "url": "https://github.com/ITernovtsiy/fractal-vue-adapter/issues"
   },
-  "homepage": "https://github.com/swey/fractal-vue-adapter",
+  "homepage": "https://github.com/ITernovtsiy/fractal-vue-adapter",
   "dependencies": {
     "@frctl/fractal": "^1.0.0-rc.1",
     "babel-core": "^7.0.0-beta.51",
