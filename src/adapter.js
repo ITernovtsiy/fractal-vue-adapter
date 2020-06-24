@@ -69,10 +69,35 @@ class VueAdapter extends Adapter {
 		// Only use the page renderer with page template for the preview layout rendering (if meta has "target" or context has "yield")
 		const renderer = meta.target ? this._vuePageRenderer : this._vueRenderer;
 
-		return renderer.renderToString(vm).catch(err => {
-			console.error(err);
-			return err;
-		});
+		return renderer.renderToString(vm)
+			.then(result => {
+				// add styles from Vue component
+				const styles = this.loadVueComponentStyles(path);
+				if (styles) {
+					result += `<style>${styles}</style>`;
+				}
+
+				return result;
+			})
+			.catch(err => {
+				console.error(err);
+				return err;
+			});
+	}
+
+	loadVueComponentStyles(path) {
+		try {
+			const component = vueTemplateCompiler.parseComponent(fs.readFileSync(path, 'utf8'));
+			if (component && component.styles && component.styles.length > 0) {
+				return component.styles.reduce((allStyles, style) => {
+					return allStyles + (style.content || '');
+				}, '') || null;
+			}
+		} catch (e) {
+			// ignore
+		}
+
+		return null;
 	}
 
 	parseSingleFileVueComponent(content, path = '') {
